@@ -135,15 +135,18 @@
     var(--normal-color-1)
   );
   /* Typography */
-  --font-family: "KoHo", sans-serif;
-  --font-size-small: 0.8rem;
-  --font-size-base: 1rem;
-  --font-size-large: 1.25rem;
-  --font-size-x-large: 1.5rem;
-  --font-size-xx-large: 2rem;
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-semibold: 600;
+  --ff: "KoHo", sans-serif;
+  --fs-sm: clamp(0.8rem, 0.22vw + 0.76rem, 0.94rem);
+  --fs-base: clamp(1rem, 0.4vw + 0.92rem, 1.25rem);
+  --fs-md: clamp(1.25rem, 0.67vw + 1.12rem, 1.67rem);
+  --fs-lg: clamp(1.56rem, 1.05vw + 1.35rem, 2.22rem);
+  --fs-xl: clamp(1.95rem, 1.61vw + 1.63rem, 2.96rem);
+  --fs-xxl: clamp(2.44rem, 2.41vw + 1.96rem, 3.95rem);
+  --fs-xxxl: clamp(3.05rem, 3.53vw + 2.34rem, 5.26rem);
+  --fw-l: 300;
+  --fw-r: 400;
+  --fw-sb: 600;
+  --fw-b: 700;
 }
 
 /* ===== Reset ===== */
@@ -163,19 +166,16 @@ ul {
 }
 
 img {
+  display: block;
   max-width: 100%;
   height: auto;
 }
 
 body {
   min-height: 100vh;
-  font-family: var(--font-family);
+  font-family: var(--ff);
   color: var(--white);
   background: var(--dark-black);
-}
-
-#back {
-  font-size: var(--font-size-xx-large);
 }
 
 /* ===== Type ===== */
