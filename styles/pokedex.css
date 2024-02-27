@@ -9,7 +9,7 @@ header {
 }
 
 .shadow {
-  box-shadow: 10px 0 16px rgba(0, 0, 0, 0.8);
+  box-shadow: 10px 0 16px rgba(0, 0, 0, 1);
 }
 
 #back {
@@ -92,10 +92,12 @@ input::placeholder {
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
-  width: 90%;
+  max-height: calc(100vh - 131px);
+  width: 100%;
   gap: 1rem;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 0.5rem 1rem 2rem;
+  overflow-y: scroll;
 }
 
 .pokemon-card {
@@ -113,6 +115,7 @@ input::placeholder {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 }
 
 .pokemon-card .top span {
@@ -139,9 +142,26 @@ h3 {
   margin-bottom: 0.25rem;
 }
 
+.types {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.type {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
 svg {
-  width: 1rem;
-  height: 1rem;
+  width: 0.8rem;
+  height: 0.8rem;
 }
 
 svg path {
@@ -231,13 +251,10 @@ svg path {
       }
 
       .types {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
         margin-bottom: 1rem;
         transition: all 1s;
 
-        .type {
+        .type-container {
           display: flex;
           align-items: center;
           padding: 0.2rem 0.5rem 0.2rem 0.2rem;
@@ -245,19 +262,10 @@ svg path {
           border: 1px solid var(--grass-color-1);
           transition: all 1s;
 
-          .type-circle {
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 50%;
-            background-color: var(--grass-color-1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+          .type {
             transition: all 1s;
 
             svg {
-              width: 1rem;
-              height: 1rem;
               transition: all 1s;
             }
           }
@@ -270,11 +278,8 @@ svg path {
             transition: all 1s;
           }
         }
-        .type:last-of-type {
+        .type-container:last-of-type {
           border-color: var(--poison-color-1);
-          .type-circle {
-            background-color: var(--poison-color-1);
-          }
         }
       }
 
@@ -375,9 +380,9 @@ svg path {
       }
       .types {
         margin-bottom: 0.2rem;
-        .type {
+        .type-container {
           padding: 0.1rem 0.3rem 0.1rem 0.1rem;
-          .type-circle {
+          .type {
             width: 1rem;
             height: 1rem;
             svg {

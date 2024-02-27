@@ -1,10 +1,9 @@
 export function header() {
-  window.addEventListener("scroll", function () {
-    const $header = document.querySelector("header");
-    if (window.scrollY > 0) {
-      $header.classList.add("shadow");
-    } else {
-      $header.classList.remove("shadow");
-    }
+  const $pokemonContainer = document.querySelector(".cards-container"),
+    $header = document.querySelector("header");
+  $pokemonContainer.addEventListener("scroll", () => {
+    $pokemonContainer.scrollTop > 0
+      ? $header.classList.add("shadow")
+      : $header.classList.remove("shadow");
   });
 }
