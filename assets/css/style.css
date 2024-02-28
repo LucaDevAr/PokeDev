@@ -179,57 +179,219 @@ body {
 }
 
 /* ===== Type ===== */
-.fire {
+.fire-bg {
   background-color: var(--fire-color-1);
 }
-.water {
+.fire-c {
+  color: var(--fire-color-1);
+}
+.fire-b {
+  border: 1px solid var(--fire-color-1);
+}
+.fire-svg {
+  fill: var(--fire-color-1);
+}
+.water-bg {
   background-color: var(--water-color-1);
 }
-.grass {
+.water-c {
+  color: var(--water-color-1);
+}
+.water-b {
+  border: 1px solid var(--water-color-1);
+}
+.water-svg {
+  fill: var(--water-color-1);
+}
+.grass-bg {
   background-color: var(--grass-color-1);
 }
-.electric {
+.grass-c {
+  color: var(--grass-color-1);
+}
+.grass-b {
+  border: 1px solid var(--grass-color-1);
+}
+.grass-svg {
+  fill: var(--grass-color-1);
+}
+.electric-bg {
   background-color: var(--electric-color-1);
 }
-.ice {
+.electric-c {
+  color: var(--electric-color-1);
+}
+.electric-b {
+  border: 1px solid var(--electric-color-1);
+}
+.electric-svg {
+  fill: var(--electric-color-1);
+}
+.ice-bg {
   background-color: var(--ice-color-1);
 }
-.fighting {
+.ice-c {
+  color: var(--ice-color-1);
+}
+.ice-b {
+  border: 1px solid var(--ice-color-1);
+}
+.ice-svg {
+  fill: var(--ice-color-1);
+}
+.fighting-bg {
   background-color: var(--fighting-color-1);
 }
-.poison {
+.fighting-c {
+  color: var(--fighting-color-1);
+}
+.fighting-b {
+  border: 1px solid var(--fighting-color-1);
+}
+.fighting-svg {
+  fill: var(--fighting-color-1);
+}
+.poison-bg {
   background-color: var(--poison-color-1);
 }
-.ground {
+.poison-c {
+  color: var(--poison-color-1);
+}
+.poison-b {
+  border: 1px solid var(--poison-color-1);
+}
+.poison-svg {
+  fill: var(--poison-color-1);
+}
+.ground-bg {
   background-color: var(--ground-color-1);
 }
-.flying {
+.ground-c {
+  color: var(--ground-color-1);
+}
+.ground-b {
+  border: 1px solid var(--ground-color-1);
+}
+.ground-svg {
+  fill: var(--ground-color-1);
+}
+.flying-bg {
   background-color: var(--flying-color-1);
 }
-.psychic {
+.flying-c {
+  color: var(--flying-color-1);
+}
+.flying-b {
+  border: 1px solid var(--flying-color-1);
+}
+.flying-svg {
+  fill: var(--flying-color-1);
+}
+.psychic-bg {
   background-color: var(--psychic-color-1);
 }
-.bug {
+.psychic-c {
+  color: var(--psychic-color-1);
+}
+.psychic-b {
+  border: 1px solid var(--psychic-color-1);
+}
+.psychic-svg {
+  fill: var(--psychic-color-1);
+}
+.bug-bg {
   background-color: var(--bug-color-1);
 }
-.rock {
+.bug-c {
+  color: var(--bug-color-1);
+}
+.bug-b {
+  border: 1px solid var(--bug-color-1);
+}
+.bug-svg {
+  fill: var(--bug-color-1);
+}
+.rock-bg {
   background-color: var(--rock-color-1);
 }
-.ghost {
+.rock-c {
+  color: var(--rock-color-1);
+}
+.rock-b {
+  border: 1px solid var(--rock-color-1);
+}
+.rock-svg {
+  fill: var(--rock-color-1);
+}
+.ghost-bg {
   background-color: var(--ghost-color-1);
 }
-.dragon {
+.ghost-c {
+  color: var(--ghost-color-1);
+}
+.ghost-b {
+  border: 1px solid var(--ghost-color-1);
+}
+.ghost-svg {
+  fill: var(--ghost-color-1);
+}
+.dragon-bg {
   background-color: var(--dragon-color-1);
 }
-.dark {
+.dragon-c {
+  color: var(--dragon-color-1);
+}
+.dragon-b {
+  border: 1px solid var(--dragon-color-1);
+}
+.dragon-svg {
+  fill: var(--dragon-color-1);
+}
+.dark-bg {
   background-color: var(--dark-color-1);
 }
-.steel {
+.dark-c {
+  color: var(--dark-color-1);
+}
+.dark-b {
+  border: 1px solid var(--dark-color-1);
+}
+.dark-svg {
+  fill: var(--dark-color-1);
+}
+.steel-bg {
   background-color: var(--steel-color-1);
 }
-.fairy {
+.steel-c {
+  color: var(--steel-color-1);
+}
+.steel-b {
+  border: 1px solid var(--steel-color-1);
+}
+.steel-svg {
+  fill: var(--steel-color-1);
+}
+.fairy-bg {
   background-color: var(--fairy-color-1);
 }
-.normal {
+.fairy-c {
+  color: var(--fairy-color-1);
+}
+.fairy-b {
+  border: 1px solid var(--fairy-color-1);
+}
+.fairy-svg {
+  fill: var(--fairy-color-1);
+}
+.normal-bg {
   background-color: var(--normal-color-1);
+}
+.normal-c {
+  color: var(--normal-color-1);
+}
+.normal-b {
+  border: 1px solid var(--normal-color-1);
+}
+.normal-svg {
+  fill: var(--normal-color-1);
 }

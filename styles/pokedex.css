@@ -105,9 +105,11 @@ input::placeholder {
   border-radius: 0.5rem;
   box-shadow: 3px 0px 12px rgba(0, 0, 0, 0.5);
   padding: 0.5rem;
+  min-height: 210px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   cursor: pointer;
 }
 
@@ -124,7 +126,7 @@ input::placeholder {
 
 .pokemon-card > img {
   filter: drop-shadow(3px 2px 5px rgba(0, 0, 0, 0.5));
-  width: 95%;
+  max-width: 90%;
 }
 
 .pokemon-card .bottom {
@@ -148,6 +150,14 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
+}
+
+.pokemon-card .type-container span {
+  display: none;
+}
+
+.pokemon-card .type-container {
+  border: none;
 }
 
 .type {
@@ -212,7 +222,6 @@ svg path {
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--grass-color-1);
       border-radius: 1rem;
 
       i {
@@ -259,7 +268,6 @@ svg path {
           align-items: center;
           padding: 0.2rem 0.5rem 0.2rem 0.2rem;
           border-radius: 1rem;
-          border: 1px solid var(--grass-color-1);
           transition: all 1s;
 
           .type {
@@ -277,9 +285,6 @@ svg path {
             line-height: 78%;
             transition: all 1s;
           }
-        }
-        .type-container:last-of-type {
-          border-color: var(--poison-color-1);
         }
       }
 
@@ -309,17 +314,12 @@ svg path {
         right: 0;
         transform: translateY(-50%);
         transition: all 1s;
-
-        path:first-of-type {
-          fill: var(--grass-color-1);
-        }
       }
     }
   }
 
   .info {
     height: 0;
-    background-color: var(--grass-color-1);
     width: 100%;
     border-radius: 2rem 2rem 0 0;
     transition: all 1s 0s;
@@ -348,7 +348,6 @@ svg path {
       height: 3.5rem;
       bottom: 0;
       width: 2.5rem;
-      background: var(--grass-color-1);
       border-radius: 2rem 2rem 0 0;
       z-index: -1;
     }
@@ -363,7 +362,6 @@ svg path {
 
     i {
       font-size: var(--fs-lg);
-      color: var(--grass-color-1);
       transition: color 0.5s 1.2s;
     }
   }
@@ -392,6 +390,7 @@ svg path {
           }
           span {
             font-size: var(--fs-sm);
+            line-height: 73%;
           }
         }
       }
