@@ -49,20 +49,14 @@ export function modal(pokemonData, types) {
         <!-- Info -->
         <div class="info ${pokemonData.types[0].type.name}-bg"></div>
         <!-- Slider Indicator -->
-        <div class="indicator">
-          <img src="/assets/images/pokemon/gengar-2.png" alt="" />
-          <img src="/assets/images/pokemon/blastoise-2.png" alt="" />
-          <img src="/assets/images/pokemon/venusaur-2.png" alt="" />
-          <img src="/assets/images/pokemon/moltres-2.png" alt="" />
-          <img src="/assets/images/pokemon/eevee-2.png" alt="" />
           <div class="indicator-label ${
             pokemonData.types[0].type.name
           }-bg"></div>
-        </div>
         <!-- More -->
         <div class="more">
           <i class="ri-add-line ${pokemonData.types[0].type.name}-c"></i>
         </div>`;
+
   $modal.classList.add("show");
 
   const $plus = $modal.querySelector(".more"),

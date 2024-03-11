@@ -65,7 +65,7 @@ header .search i {
 .search-bar i {
   position: absolute;
   color: var(--purple-grey);
-  padding: 0 0.5rem;
+  padding: 0.5rem;
 }
 
 input {
@@ -180,6 +180,163 @@ svg path {
 
 .heart {
   font-size: var(--fs-base);
+}
+
+/* ===== Filters ===== */
+.filters {
+  position: fixed;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 100%;
+  background: var(--dark-black);
+  z-index: 1001;
+  color: var(--dark-black);
+  transition: 0.5s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: scroll;
+}
+
+.filters.show {
+  right: 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: var(--dark-black);
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+    color: var(--white);
+    font-family: var(--ff);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-sb);
+  }
+}
+
+/* ===== Accordion ===== */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+
+  .accordion__item {
+    color: #fff;
+    background: var(--dark-black);
+    cursor: pointer;
+    box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+
+    .accordion__header {
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      justify-content: space-between;
+      height: 4rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+
+      i {
+        font-size: 2rem;
+        font-weight: 500;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    .accordion__content {
+      height: 0;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      transition: height 0.2s ease-in-out, margin 0.2s;
+    }
+  }
+}
+
+.open i {
+  transform: rotate(180deg);
+}
+
+.open .accordion__content {
+  margin: 1rem 0;
+}
+
+.accordion__content {
+  .type-container {
+    display: flex;
+    align-items: center;
+    padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+    border-radius: 1rem;
+    transition: all 0.5s;
+
+    .type {
+      transition: all 0.5s;
+    }
+
+    span {
+      font-weight: var(--fw-sb);
+      font-size: var(--fs-base);
+      padding: 0.25rem 0.25rem;
+      flex: 1;
+      line-height: 78%;
+      text-align: center;
+      transition: all 0.5s;
+    }
+  }
+}
+
+.disable {
+  border-color: var(--purple-grey);
+
+  .type {
+    background: var(--purple-grey);
+  }
+
+  span {
+    color: var(--purple-grey);
+  }
+}
+
+.accordion__content {
+  .card {
+    border: 2px solid var(--purple-grey);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.5s;
+
+    .pokemons {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 33.3%;
+      }
+    }
+
+    p {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: var(--fs-md);
+      font-weight: var(--fw-sb);
+    }
+  }
+}
+
+.card.active {
+  border-color: #fff;
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.7);
 }
 
 /* ===== Modal ===== */
@@ -326,33 +483,6 @@ svg path {
     margin-top: 1rem;
   }
 
-  .indicator {
-    width: 100%;
-    height: 3.5rem;
-    display: flex;
-    bottom: 0;
-    align-items: center;
-    justify-content: space-around;
-    position: absolute;
-    z-index: 10;
-    user-select: initial;
-    opacity: 1;
-    transition: opacity 0s 0s, bottom 1s 0.5s;
-
-    img {
-      width: 2rem;
-    }
-
-    .indicator-label {
-      position: absolute;
-      height: 3.5rem;
-      bottom: 0;
-      width: 2.5rem;
-      border-radius: 2rem 2rem 0 0;
-      z-index: -1;
-    }
-  }
-
   .more {
     position: absolute;
     bottom: 4.5rem;
@@ -415,12 +545,6 @@ svg path {
     height: 2000px;
     display: block;
     transition: all 1.5s 0.3s;
-  }
-
-  .indicator {
-    user-select: none;
-    opacity: 0;
-    bottom: -100%;
   }
 
   .more {

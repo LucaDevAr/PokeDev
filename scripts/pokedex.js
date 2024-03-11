@@ -1,41 +1,143 @@
-import { fetchData } from "./pokeapi.js";
 import { modal } from "./modal.js";
+export const allPokemonData = [];
+const $cardsContainer = document.querySelector(".cards-container");
+export let filteredPokemon = [];
+export function updateFilteredPokemon(value) {
+  filteredPokemon = value;
+}
+let offset = 0;
+export function updateOffset(value) {
+  offset = value;
+}
+let limit = 30;
 
 export async function pokedex() {
-  try {
-    const maxPokemonId = 1025;
-    let offset = 0;
-    const limit = 20;
-    const $cardsContainer = document.querySelector(".cards-container");
-    for (let i = offset + 1; i <= limit; i++) {
-      const pokemonData = await fetchData(
-        `https://pokeapi.co/api/v2/pokemon/${i}`
-      );
-      createPokemonCardHTML(pokemonData);
-    }
-    offset += limit;
-    $cardsContainer.addEventListener("scroll", async () => {
-      if (
-        $cardsContainer.scrollTop + $cardsContainer.clientHeight >=
-        $cardsContainer.scrollHeight - 50
-      ) {
-        for (let i = offset + 1; i <= offset + limit; i++) {
-          if (i > maxPokemonId) break;
-          const pokemonData = await fetchData(
-            `https://pokeapi.co/api/v2/pokemon/${i}`
-          );
-          createPokemonCardHTML(pokemonData);
-        }
-        offset += limit;
-      }
-    });
-  } catch (error) {
-    console.error("Error loading all Pokemon:", error);
+  await firstLoadPokemonData();
+  await getAllPokemonData();
+  console.log(allPokemonData);
+}
+
+async function firstLoadPokemonData() {
+  for (let i = 0; i < 30; i++) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`);
+    const pokemonData = await response.json();
+    createPokemonCardHTML(pokemonData);
   }
 }
 
-function getTypeSvgCode(pokemonData) {
-  const types = pokemonData.types;
+async function getAllPokemonData() {
+  for (let i = 0; i < 1025; i++) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i + 1}`);
+    const pokemonsData = await response.json();
+    allPokemonData.push(pokemonsData);
+  }
+}
+// Definimos los rangos de IDs para cada región
+const regionRanges = {
+  kanto: { start: 1, end: 151 },
+  johto: { start: 152, end: 251 },
+  hoenn: { start: 252, end: 386 },
+  sinnoh: { start: 387, end: 493 },
+  teselia: { start: 494, end: 649 },
+  kalos: { start: 650, end: 721 },
+  alola: { start: 722, end: 809 },
+  galar: { start: 810, end: 898 },
+  hisui: { start: 899, end: 905 },
+  paldea: { start: 906, end: 1025 },
+};
+
+export function filterByRegion(regions) {
+  regions.forEach((region) => {
+    const { start, end } = regionRanges[region];
+    const regionPokemon = allPokemonData.filter((pokemon) => {
+      return pokemon.id >= start && pokemon.id <= end;
+    });
+    filteredPokemon = filteredPokemon.concat(regionPokemon);
+  });
+}
+
+export function filterByType(types, filterCount) {
+  filteredPokemon =
+    filterCount == 0
+      ? allPokemonData.filter((pokemon) => {
+          return types.some((type) =>
+            pokemon.types.some((t) => t.type.name === type)
+          );
+        })
+      : filteredPokemon.filter((pokemon) => {
+          return types.some((type) =>
+            pokemon.types.some((t) => t.type.name === type)
+          );
+        });
+}
+
+var count = 0;
+export function updateCount(value) {
+  count = value;
+}
+$cardsContainer.addEventListener("scroll", async () => {
+  if (
+    $cardsContainer.scrollTop + $cardsContainer.clientHeight >=
+    $cardsContainer.scrollHeight - 100
+  ) {
+    console.log("scroll");
+    if (count == 0) {
+      offset = 30;
+      count = 1;
+    }
+    if (filteredPokemon.length > 0) {
+      loadMorePokemon(filteredPokemon);
+    } else {
+      loadMorePokemon(allPokemonData);
+    }
+  }
+});
+
+async function createPokemonCardHTML(pokemon) {
+  // console.log(pokemon.name);
+  if (!pokemon) {
+    console.error("El objeto pokemon es undefined");
+    return;
+  }
+  const $cardsContainer = document.querySelector(".cards-container");
+  const pokemonCard = document.createElement("div");
+  pokemonCard.classList.add("pokemon-card");
+  pokemonCard.innerHTML = `
+        <div class="top">
+          <span>#${String(pokemon.id).padStart(4, "0")}</span>
+          <i class="ri-heart-line heart"></i>
+        </div>
+        <img src="${
+          pokemon.sprites.other.showdown.front_default ||
+          pokemon.sprites.other.home.front_default
+        }" alt="${pokemon.name}"/>
+        <div class="bottom">
+          <h3>${pokemon.name}</h3>
+          <div class="types">${getTypeSvgCode(pokemon)}</div>
+        </div>
+      `;
+  $cardsContainer.appendChild(pokemonCard);
+  pokemonCard.addEventListener(
+    "click",
+    (e) => {
+      if (e.target.classList.contains("heart")) {
+        return;
+      }
+      modal(pokemon, getTypeSvgCode(pokemon));
+    },
+    true
+  );
+}
+
+export async function loadMorePokemon(data) {
+  for (let i = offset; i < offset + limit && i < data.length; i++) {
+    createPokemonCardHTML(data[i]);
+  }
+  offset += limit;
+}
+
+function getTypeSvgCode(pokemon) {
+  const types = pokemon.types;
   let svgCode = "";
   const typeSvgMap = {
     normal: `<div class="type-container normal-b">
@@ -194,36 +296,4 @@ function getTypeSvgCode(pokemonData) {
     }
   });
   return svgCode;
-}
-
-function createPokemonCardHTML(pokemonData) {
-  const pokemonCard = document.createElement("div");
-  pokemonCard.classList.add("pokemon-card");
-  const cardHTML = `
-    <div class="top">
-      <span>#${String(pokemonData.id).padStart(4, "0")}</span>
-      <i class="ri-heart-line heart"></i>
-    </div>
-    <img src="${pokemonData.sprites.other.showdown.front_default}" alt="${
-    pokemonData.name
-  }"/>
-    <div class="bottom">
-      <h3>${pokemonData.name}</h3>
-      <div class=types>${getTypeSvgCode(pokemonData)}</div>
-    </div>
-  `;
-  pokemonCard.innerHTML = cardHTML;
-  const $cardsContainer = document.querySelector(".cards-container");
-  $cardsContainer.appendChild(pokemonCard);
-
-  pokemonCard.addEventListener(
-    "click",
-    (e) => {
-      if (e.target.classList.contains("heart")) {
-        return;
-      }
-      modal(pokemonData, getTypeSvgCode(pokemonData));
-    },
-    true
-  );
 }
