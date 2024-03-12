@@ -6,6 +6,7 @@ import { updateOffset } from "./pokedex.js";
 import { updateCount } from "./pokedex.js";
 import { updateFilteredPokemon } from "./pokedex.js";
 import { filteredPokemon } from "./pokedex.js";
+import { updatefiltr } from "./search-bar.js";
 
 const $filterIcon = document.getElementById("filters"),
   $cancel = document.getElementById("cancel"),
@@ -15,7 +16,14 @@ const $filterIcon = document.getElementById("filters"),
   $accordions = document.querySelectorAll(
     ".filters .accordion .accordion__item"
   ),
-  $cardsContainer = document.querySelector(".cards-container");
+  $cardsContainer = document.querySelector(".cards-container"),
+  $input = document.querySelector("input");
+
+export let filter = 0;
+export let fil = 0;
+export function updateFil(value) {
+  fil = value;
+}
 
 export function filters() {
   $filterIcon.addEventListener("click", () => {
@@ -25,13 +33,13 @@ export function filters() {
     $filters.classList.remove("show");
   });
   $apply.addEventListener("click", () => {
-    let filters = 0;
     $filters.classList.remove("show");
     $cardsContainer.scrollTop = 0;
     $cardsContainer.innerHTML = "";
     updateOffset(0);
     updateCount(0);
     updateFilteredPokemon([]);
+    $input.value = "";
 
     $accordions.forEach((accordion) => {
       // console.log(accordion);
@@ -48,7 +56,8 @@ export function filters() {
         });
         if (!regionName.length == 0) {
           filterByRegion(regionName);
-          filters = 1;
+          filter = 1;
+          fil = 1;
         }
       }
       if (accordion.id == "types") {
@@ -61,21 +70,23 @@ export function filters() {
           }
         });
         if (!typeName.length == 0) {
-          filterByType(typeName, filters);
-          filters = 1;
+          filterByType(typeName, filter);
+          filter = 1;
+          fil = 1;
         }
       }
     });
-    if (filters == 0) {
+    if (filter == 0) {
       loadMorePokemon(allPokemonData);
     } else {
       loadMorePokemon(filteredPokemon);
-      filters = 0;
+      filter = 0;
     }
   });
   $reset.addEventListener("click", () => {
     $filters.classList.remove("show");
     $cardsContainer.scrollTop = 0;
+
     $accordions.forEach((accordion) => {
       accordion.classList.remove("open");
       accordion.querySelector(".accordion__content").style.height = "0px";
@@ -95,7 +106,9 @@ export function filters() {
     $cardsContainer.innerHTML = "";
     updateOffset(0);
     updateCount(0);
+    updatefiltr(0);
     updateFilteredPokemon([]);
+    $input.value = "";
     loadMorePokemon(allPokemonData);
   });
 }

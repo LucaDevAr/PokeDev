@@ -4,6 +4,7 @@ import { back } from "../../scripts/back.js";
 import { input } from "../../scripts/input.js";
 import { accordion } from "../../scripts/accordion.js";
 import { filters } from "../../scripts/filters.js";
+import { searchBar } from "../../scripts/search-bar.js";
 
 pokedex();
 input();
@@ -11,3 +12,4 @@ back();
 header();
 accordion();
 filters();
+searchBar();

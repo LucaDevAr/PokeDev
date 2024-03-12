@@ -1,4 +1,6 @@
 import { modal } from "./modal.js";
+import { filtr } from "./search-bar.js";
+import { matchingPokemon } from "./search-bar.js";
 export const allPokemonData = [];
 const $cardsContainer = document.querySelector(".cards-container");
 export let filteredPokemon = [];
@@ -84,6 +86,10 @@ $cardsContainer.addEventListener("scroll", async () => {
     if (count == 0) {
       offset = 30;
       count = 1;
+    }
+    if (filtr == 1) {
+      loadMorePokemon(matchingPokemon);
+      return;
     }
     if (filteredPokemon.length > 0) {
       loadMorePokemon(filteredPokemon);
