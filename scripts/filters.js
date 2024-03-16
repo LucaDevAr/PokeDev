@@ -1,12 +1,13 @@
-import { filterByType } from "./pokedex.js";
-import { filterByRegion } from "./pokedex.js";
+import { filterByType } from "./type.js";
+import { filterByRegion } from "./region.js";
 import { allPokemonData } from "./pokedex.js";
-import { loadMorePokemon } from "./pokedex.js";
-import { updateOffset } from "./pokedex.js";
-import { updateCount } from "./pokedex.js";
+import { loadMorePokemon } from "./scroll.js";
+import { updateOffset } from "./scroll.js";
+import { updateCount } from "./scroll.js";
 import { updateFilteredPokemon } from "./pokedex.js";
 import { filteredPokemon } from "./pokedex.js";
 import { updatefiltr } from "./search-bar.js";
+import { changeCarousel } from "./carousel.js";
 
 const $filterIcon = document.getElementById("filters"),
   $cancel = document.getElementById("cancel"),
@@ -42,7 +43,6 @@ export function filters() {
     $input.value = "";
 
     $accordions.forEach((accordion) => {
-      // console.log(accordion);
       accordion.classList.remove("open");
       accordion.querySelector(".accordion__content").style.height = "0px";
       if (accordion.id == "regions") {
@@ -78,8 +78,10 @@ export function filters() {
     });
     if (filter == 0) {
       loadMorePokemon(allPokemonData);
+      changeCarousel(allPokemonData);
     } else {
       loadMorePokemon(filteredPokemon);
+      changeCarousel(filteredPokemon);
       filter = 0;
     }
   });
@@ -110,5 +112,6 @@ export function filters() {
     updateFilteredPokemon([]);
     $input.value = "";
     loadMorePokemon(allPokemonData);
+    changeCarousel(allPokemonData);
   });
 }

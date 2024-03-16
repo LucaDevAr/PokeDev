@@ -1,10 +1,10 @@
 import { allPokemonData } from "./pokedex.js";
 import { filteredPokemon } from "./pokedex.js";
-import { loadMorePokemon } from "./pokedex.js";
+import { loadMorePokemon } from "./scroll.js";
 import { fil } from "./filters.js";
-import { updateOffset } from "./pokedex.js";
+import { updateOffset } from "./scroll.js";
 const $cardsContainer = document.querySelector(".cards-container");
-import { updateCount } from "./pokedex.js";
+import { updateCount } from "./scroll.js";
 export let matchingPokemon = [];
 export let filtr = 0;
 export function updatefiltr(value) {

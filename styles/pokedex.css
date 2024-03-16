@@ -483,6 +483,17 @@ svg path {
     margin-top: 1rem;
   }
 
+  .indicator-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3.5rem;
+    bottom: 0;
+    width: 2.5rem;
+    border-radius: 2rem 2rem 0 0;
+    z-index: -1;
+  }
+
   .more {
     position: absolute;
     bottom: 4.5rem;
@@ -561,4 +572,44 @@ svg path {
 
 .modal.show {
   right: 0;
+}
+
+.mySwiper {
+  position: absolute;
+  bottom: 0;
+  z-index: 2000;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  height: 3.5rem;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.1s;
+
+  .swiper-wrapper {
+    display: flex;
+
+    .swiper-slide {
+      width: 2.5rem !important;
+      height: 2.5rem;
+
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}
+
+.modal.show + .mySwiper {
+  opacity: 1;
+  pointer-events: initial;
+  transition: opacity 0.2s 0.2s;
+}
+
+.wrapper {
+  user-select: none;
+  opacity: 0;
+  bottom: -100%;
 }

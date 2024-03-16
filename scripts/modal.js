@@ -17,7 +17,9 @@ export function modal(pokemonData, types) {
         <div class="middle">
           <!-- Pokemon -->
           <div class="pokemon">
-            <img src="${pokemonData.sprites.other.home.front_default}" alt="" />
+            <img src="${pokemonData.sprites.other.home.front_default}" alt="${
+    pokemonData.name
+  }" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="560"

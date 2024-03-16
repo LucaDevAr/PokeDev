@@ -5,11 +5,15 @@ import { input } from "../../scripts/input.js";
 import { accordion } from "../../scripts/accordion.js";
 import { filters } from "../../scripts/filters.js";
 import { searchBar } from "../../scripts/search-bar.js";
+import { scroll } from "../../scripts/scroll.js";
 
-pokedex();
-input();
-back();
+document.addEventListener("DOMContentLoaded", async () => {
+  await pokedex();
+});
+scroll();
 header();
+back();
+input();
 accordion();
 filters();
 searchBar();
