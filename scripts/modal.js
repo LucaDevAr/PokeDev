@@ -1,4 +1,6 @@
-export function modal(pokemonData, types) {
+import { allPokemonData } from "./pokedex.js";
+
+export function modal(pokemonData, types, variants) {
   const $modal = document.querySelector(".modal");
   $modal.innerHTML = `
         <!-- Top Modal -->
@@ -7,9 +9,9 @@ export function modal(pokemonData, types) {
             pokemonData.types[0].type.name
           }-c" id="back"></i>
           <div class="variants ${pokemonData.types[0].type.name}-bg">
-            <i class="ri-sparkling-2-line"></i>
-            <img src="/assets/images/mega-stone.png" alt="" />
-            <img src="/assets/images/gigamax.png" alt="" />
+            <i class="ri-sparkling-2-line ${
+              pokemonData.types[0].type.name
+            }" data-variant="shiny"></i>${variants}
           </div>
           <i class="ri-heart-line ${pokemonData.types[0].type.name}-c"></i>
         </div>
@@ -62,7 +64,8 @@ export function modal(pokemonData, types) {
   $modal.classList.add("show");
 
   const $plus = $modal.querySelector(".more"),
-    $close = $modal.querySelector("#back");
+    $close = $modal.querySelector("#back"),
+    $variants = $modal.querySelectorAll(".variants *");
 
   $plus.addEventListener("click", () => {
     $modal.classList.toggle("info");
@@ -71,5 +74,94 @@ export function modal(pokemonData, types) {
   $close.addEventListener("click", () => {
     $modal.classList.remove("show");
     $modal.classList.remove("info");
+  });
+
+  $variants.forEach((variant) => {
+    variant.addEventListener("click", (e) => {
+      const variantee = e.target.hasAttribute("data-variant")
+        ? e.target
+        : e.target.closest("svg");
+      const $pokemon = $modal.querySelector("img");
+      const actives = [];
+      $variants.forEach((v) => {
+        if (v.classList.contains("active"))
+          actives.push(v.getAttribute("data-variant"));
+      });
+      if (actives.length == 0) {
+        const clickName = variantee.getAttribute("data-variant");
+        variantee.classList.add("active");
+        if (clickName == "shiny") {
+          $pokemon.src = pokemonData.sprites.other.home.front_shiny;
+        } else {
+          const variantName = pokemonData.name + "-" + clickName;
+          const variantData = allPokemonData.find((pokemon) => {
+            if (pokemon.name === variantName) return pokemon.name;
+          });
+          $pokemon.src = variantData.sprites.other.home.front_default;
+        }
+      } else if (actives.length == 1) {
+        const clickName = variantee.getAttribute("data-variant");
+        variantee.classList.add("active");
+        if (clickName == "shiny" && actives[0] == "shiny") {
+          $variants.forEach((v) => {
+            v.classList.remove("active");
+          });
+          $pokemon.src = pokemonData.sprites.other.home.front_default;
+        } else if (clickName == "shiny" && actives[0] !== "shiny") {
+          const variantName = pokemonData.name + "-" + actives[0];
+          const variantData = allPokemonData.find((pokemon) => {
+            if (pokemon.name === variantName) return pokemon.name;
+          });
+          $pokemon.src = variantData.sprites.other.home.front_shiny;
+        } else if (clickName !== "shiny" && actives[0] !== clickName) {
+          $variants.forEach((v) => {
+            v.classList.remove("active");
+          });
+          const variantName = pokemonData.name + "-" + clickName;
+          const variantData = allPokemonData.find((pokemon) => {
+            if (pokemon.name === variantName) return pokemon.name;
+          });
+          $pokemon.src = variantData.sprites.other.home.front_default;
+          variantee.classList.add("active");
+        } else {
+          $variants.forEach((v) => {
+            v.classList.remove("active");
+          });
+          $pokemon.src = pokemonData.sprites.other.home.front_default;
+        }
+      } else if (actives.length == 2) {
+        const clickName = variantee.getAttribute("data-variant");
+        if (
+          clickName !== "shiny" &&
+          actives[0] !== clickName &&
+          actives[1] !== clickName
+        ) {
+          $variants.forEach((v) => {
+            v.classList.remove("active");
+          });
+          const variantName = pokemonData.name + "-" + clickName;
+          const variantData = allPokemonData.find((pokemon) => {
+            if (pokemon.name === variantName) return pokemon.name;
+          });
+          $pokemon.src = variantData.sprites.other.home.front_default;
+          variantee.classList.add("active");
+        } else if (
+          (clickName !== "shiny" && actives[0] == clickName) ||
+          actives[1] == clickName
+        ) {
+          $variants.forEach((v) => {
+            v.classList.remove("active");
+          });
+          $pokemon.src = pokemonData.sprites.other.home.front_default;
+        } else if (clickName == "shiny") {
+          variantee.classList.remove("active");
+          const variantName = pokemonData.name + "-" + actives[1];
+          const variantData = allPokemonData.find((pokemon) => {
+            if (pokemon.name === variantName) return pokemon.name;
+          });
+          $pokemon.src = variantData.sprites.other.home.front_default;
+        }
+      }
+    });
   });
 }

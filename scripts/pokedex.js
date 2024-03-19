@@ -1,7 +1,7 @@
 import { modal } from "./modal.js";
 import { createPokemonCardHTML } from "./cards.js";
 import { getTypeSvgCode } from "./cards.js";
-import { filterByType } from "./type.js";
+import { getVariants } from "./cards.js";
 export let allPokemonData = [];
 export let filteredPokemon = [];
 export function updateFilteredPokemon(value) {
@@ -91,8 +91,9 @@ export async function createPokemonSlider() {
       const alt = centerImg.alt;
       allPokemonData.forEach((pokemon) => {
         if (pokemon.name == alt) {
+          const variant = getVariants(pokemon);
           const type = getTypeSvgCode(pokemon);
-          modal(pokemon, type);
+          modal(pokemon, type, variant);
         }
       });
       console.log("Imagen en el centro:", alt);

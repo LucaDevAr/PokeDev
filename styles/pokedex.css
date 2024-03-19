@@ -379,17 +379,31 @@ svg path {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 1rem;
+      border-radius: 3rem;
+      color: var(--dark-black);
+      font-weight: var(--fw-b);
+      overflow: hidden;
 
       i {
-        color: var(--dark-black);
         font-size: var(--fs-md);
       }
 
-      img {
-        width: 32px;
-        height: 32px;
+      div,
+      svg {
+        height: 2rem;
+        width: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 0.5rem;
+        user-select: none;
+        fill: var(--dark-black);
+      }
+      svg {
+        padding: 0.2rem;
+      }
+      .y {
+        transform: rotateX(-180deg);
       }
     }
   }
@@ -492,12 +506,13 @@ svg path {
     width: 2.5rem;
     border-radius: 2rem 2rem 0 0;
     z-index: -1;
+    transition: all 1.5s 0.3s;
   }
 
   .more {
     position: absolute;
     bottom: 4.5rem;
-    z-index: 100001;
+    z-index: 10000;
     width: min-content;
     transition: all 1s 0.9s;
 
@@ -558,10 +573,16 @@ svg path {
     transition: all 1.5s 0.3s;
   }
 
+  .indicator-label {
+    bottom: -100%;
+    transition-delay: 0s;
+  }
+
   .more {
     transform: rotate(225deg);
     bottom: 1rem;
     transition: all 1s;
+    z-index: 10000;
 
     i {
       color: var(--white);
@@ -585,7 +606,7 @@ svg path {
   overflow: hidden;
   display: flex;
   align-items: center;
-  transition: opacity 0.1s;
+  transition: all 1.5s, opacity 0.1s;
 
   .swiper-wrapper {
     display: flex;
@@ -605,11 +626,15 @@ svg path {
 .modal.show + .mySwiper {
   opacity: 1;
   pointer-events: initial;
-  transition: opacity 0.2s 0.2s;
+  transition: all 1.5s 0.3s, opacity 0.2s 0.2s;
 }
 
 .wrapper {
   user-select: none;
   opacity: 0;
   bottom: -100%;
+}
+.modal.info + .mySwiper {
+  bottom: -100%;
+  transition-delay: 0s;
 }
