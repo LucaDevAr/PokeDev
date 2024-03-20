@@ -485,6 +485,7 @@ svg path {
         right: 0;
         transform: translateY(-50%);
         transition: all 1s;
+        cursor: pointer;
       }
     }
   }

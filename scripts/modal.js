@@ -28,6 +28,7 @@ export function modal(pokemonData, types, variants) {
               height="380"
               viewBox="0 0 560 380"
               fill="none"
+              id="sound"
             >
               <path
                 class="${pokemonData.types[0].type.name}-svg"
@@ -65,7 +66,8 @@ export function modal(pokemonData, types, variants) {
 
   const $plus = $modal.querySelector(".more"),
     $close = $modal.querySelector("#back"),
-    $variants = $modal.querySelectorAll(".variants *");
+    $variants = $modal.querySelectorAll(".variants *"),
+    $sound = $modal.querySelector("#sound");
 
   $plus.addEventListener("click", () => {
     $modal.classList.toggle("info");
@@ -98,6 +100,7 @@ export function modal(pokemonData, types, variants) {
             if (pokemon.name === variantName) return pokemon.name;
           });
           $pokemon.src = variantData.sprites.other.home.front_default;
+          $pokemon.alt = variantData.name;
         }
       } else if (actives.length == 1) {
         const clickName = variantee.getAttribute("data-variant");
@@ -107,12 +110,14 @@ export function modal(pokemonData, types, variants) {
             v.classList.remove("active");
           });
           $pokemon.src = pokemonData.sprites.other.home.front_default;
+          $pokemon.alt = pokemonData.name;
         } else if (clickName == "shiny" && actives[0] !== "shiny") {
           const variantName = pokemonData.name + "-" + actives[0];
           const variantData = allPokemonData.find((pokemon) => {
             if (pokemon.name === variantName) return pokemon.name;
           });
           $pokemon.src = variantData.sprites.other.home.front_shiny;
+          $pokemon.alt = variantData.name;
         } else if (clickName !== "shiny" && actives[0] !== clickName) {
           $variants.forEach((v) => {
             v.classList.remove("active");
@@ -123,11 +128,13 @@ export function modal(pokemonData, types, variants) {
           });
           $pokemon.src = variantData.sprites.other.home.front_default;
           variantee.classList.add("active");
+          $pokemon.alt = variantData.name;
         } else {
           $variants.forEach((v) => {
             v.classList.remove("active");
           });
           $pokemon.src = pokemonData.sprites.other.home.front_default;
+          $pokemon.alt = pokemonData.name;
         }
       } else if (actives.length == 2) {
         const clickName = variantee.getAttribute("data-variant");
@@ -145,6 +152,7 @@ export function modal(pokemonData, types, variants) {
           });
           $pokemon.src = variantData.sprites.other.home.front_default;
           variantee.classList.add("active");
+          $pokemon.alt = variantData.name;
         } else if (
           (clickName !== "shiny" && actives[0] == clickName) ||
           actives[1] == clickName
@@ -153,6 +161,7 @@ export function modal(pokemonData, types, variants) {
             v.classList.remove("active");
           });
           $pokemon.src = pokemonData.sprites.other.home.front_default;
+          $pokemon.alt = pokemonData.name;
         } else if (clickName == "shiny") {
           variantee.classList.remove("active");
           const variantName = pokemonData.name + "-" + actives[1];
@@ -160,8 +169,32 @@ export function modal(pokemonData, types, variants) {
             if (pokemon.name === variantName) return pokemon.name;
           });
           $pokemon.src = variantData.sprites.other.home.front_default;
+          $pokemon.alt = variantData.name;
         }
       }
     });
+  });
+
+  let isPlaying = false;
+
+  $sound.addEventListener("click", () => {
+    if (isPlaying) return;
+
+    const variantName = $modal.querySelector("img");
+    const alt = variantName.alt;
+    const variantData = allPokemonData.find((pokemon) => {
+      if (pokemon.name === alt) return pokemon.name;
+    });
+
+    const audio = new Audio(variantData.cries.latest);
+    $sound.style.filter = "brightness(50%)";
+    setTimeout(() => {
+      audio.play();
+      isPlaying = true;
+      audio.addEventListener("ended", () => {
+        $sound.style.filter = "none";
+        isPlaying = false;
+      });
+    }, 300);
   });
 }
