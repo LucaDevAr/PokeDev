@@ -177,6 +177,7 @@ body {
   font-family: var(--ff);
   color: var(--white);
   background: var(--dark-black);
+  overflow: hidden;
 }
 
 /* ===== Type ===== */

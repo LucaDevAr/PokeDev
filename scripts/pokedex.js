@@ -96,8 +96,6 @@ export async function createPokemonSlider() {
           modal(pokemon, type, variant);
         }
       });
-      console.log("Imagen en el centro:", alt);
-      // Aquí puedes hacer lo que necesites con el alt de la imagen en el centro
     }
   });
 }

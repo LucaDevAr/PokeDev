@@ -29,11 +29,9 @@ export async function createPokemonCardHTML(pokemon) {
         return;
       }
       modal(pokemon, getTypeSvgCode(pokemon), getVariants(pokemon));
-      console.log(dataname);
       const swiperImgs = document.querySelectorAll(".swiper-slide img");
       swiperImgs.forEach((img, i) => {
         if (img.alt === dataname) {
-          console.log(img.alt);
           goToSlide(i);
         }
       });
@@ -43,7 +41,7 @@ export async function createPokemonCardHTML(pokemon) {
 }
 
 export function getTypeSvgCode(pokemon) {
-  const types = pokemon.types;
+  const types = pokemon.types || pokemon.tipos || pokemon;
   let svgCode = "";
   const typeSvgMap = {
     normal: `<div class="type-container normal-b">
@@ -197,7 +195,11 @@ export function getTypeSvgCode(pokemon) {
             </div>`,
   };
   types.forEach((type) => {
-    if (type.type.name in typeSvgMap) {
+    if (typeof type === "string") {
+      if (type in typeSvgMap) {
+        svgCode += typeSvgMap[type];
+      }
+    } else if (type.type.name in typeSvgMap) {
       svgCode += typeSvgMap[type.type.name];
     }
   });
