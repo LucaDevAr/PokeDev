@@ -695,7 +695,6 @@ export async function modal(pokemonData, types, variants) {
       }
     });
   });
-
   let isPlaying = false;
 
   $sound.addEventListener("click", () => {
