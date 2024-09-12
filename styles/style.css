@@ -173,6 +173,7 @@ main .pokemon-card .bottom .types .type-container .type svg path {
 main .pokemon-card .bottom .types .type-container span {
   display: none;
 }
+
 /* ===== Filters ===== */
 .filters {
   position: fixed;
@@ -248,7 +249,7 @@ main .pokemon-card .bottom .types .type-container span {
   width: 33.3%;
 }
 
-.filters .accordion .accordion__item .accordion__content p {
+.filters .accordion .accordion__item .accordion__content .card p {
   text-align: center;
   margin-top: 0.5rem;
   font-size: var(--fs-md);
@@ -327,9 +328,14 @@ main .pokemon-card .bottom .types .type-container span {
   font-family: var(--ff);
   font-size: var(--fs-base);
   font-weight: var(--fw-sb);
+  cursor: pointer;
 }
 
 /* ===== Modal ===== */
+.modal .container {
+  width: 100%;
+}
+
 .modal {
   position: fixed;
   top: 0;
@@ -344,10 +350,6 @@ main .pokemon-card .bottom .types .type-container span {
   justify-content: space-between;
   transition: right 0.3s;
   overflow: hidden;
-}
-
-.modal .container {
-  width: 100%;
 }
 
 .modal .top {
@@ -476,7 +478,7 @@ main .pokemon-card .bottom .types .type-container span {
   transition: all 1s;
 }
 
-.modal .middle span {
+.modal .middle .header span {
   font-size: var(--fs-md);
   font-weight: var(--fw-r);
   transition: all 1s;
@@ -510,72 +512,645 @@ main .pokemon-card .bottom .types .type-container span {
 }
 
 .modal .info {
-  height: 100%;
-  overflow: auto;
-  padding: 0 1rem;
+  height: 0;
+  width: 100%;
+  border-radius: 2rem 2rem 0 0;
+  transition: all 1s 0s;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal .info .tab__box {
+  position: sticky;
+  left: -2rem;
+  top: 0;
+  padding: 1rem 1rem 0.3rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal .info .tab__box .tab__btn {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-b);
+  cursor: pointer;
+  color: var(--dark-black);
+}
+
+.modal .info .tab__box .tab__btn.active {
+  color: var(--white);
+}
+
+.modal .info .tab__box .line {
+  position: absolute;
+  bottom: 0;
+  width: 49px;
+  height: 0.2rem;
+  background-color: var(--white);
+  border-radius: 3rem;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal .info .content__box {
+  padding: 0.5rem 1rem 3rem;
+  color: var(--dark-black);
+}
+
+.modal .info .content__box .content {
+  display: none;
+  text-align: center;
+}
+
+.modal .info .content__box .content > div {
+  margin: 1rem 0;
+}
+
+.modal .info .content__box .content h4 {
+  font-size: var(--fs-md);
+  color: var(--dark-black);
+  border-bottom: 2px solid var(--dark-black);
+  margin-top: 1rem;
+}
+
+.modal .info .content__box .content p {
+  font-weight: var(--fw-sb);
+}
+
+.modal .info .content__box .content.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1rem 1rem;
+}
+
+.modal .info .content__box #details .caracteristics {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.modal .info span {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-r);
-  padding: 0 1rem;
+.modal .info .content__box #details .caracteristics .h-w {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.modal .info div {
+.modal .info .content__box #details .caracteristics .h-w span {
+  font-weight: var(--fw-b);
+}
+
+.modal .info .content__box #details .caracteristics h6 {
+  font-size: var(--fs-base);
+}
+
+.modal .info .content__box #details .caracteristics .gender-container {
+  width: 100%;
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  .caracteristics
+  .gender-container
+  .gender_ratio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-b);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  .caracteristics
+  .gender-container
+  .gender_ratio
+  .bar {
+  position: relative;
+  background-color: dodgerblue;
+  width: 100%;
+  height: 1rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 3px solid var(--dark-black);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  .caracteristics
+  .gender-container
+  .gender_ratio
+  .bar
+  div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: hotpink;
+}
+
+.modal .info .content__box #details .abilities {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal .info .content__box #details .abilities p::first-letter {
+  text-transform: capitalize;
+}
+
+.modal .info .content__box #details #pokemonChart {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal .info .content__box #details #pokemonChart .pokemon img {
+  width: 100%;
+}
+
+.modal .info .content__box #details #pokemonChart .pokemon p:first-of-type {
+  font-weight: var(--fw-b);
+  font-size: 14px;
+}
+
+.modal .info .content__box #details #pokemonChart .pokemon p {
+  font-size: 12px;
+}
+
+.modal .info .content__box #details #pokemonChart .flecha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal .info .content__box #details #pokemonChart .types {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.modal .info .content__box #details #pokemonChart .types .type-container {
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal .info .content__box #details #pokemonChart .types .type-container .type {
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--dark-black);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types
+  .type-container
+  .type
+  svg {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+.modal .info .content__box #details #pokemonChart .types .type-container span {
+  display: none;
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.fire
+  .type-container
+  .type
+  path {
+  fill: var(--fire-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.water
+  .type-container
+  .type
+  path {
+  fill: var(--water-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.grass
+  .type-container
+  .type
+  path {
+  fill: var(--grass-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.electric
+  .type-container
+  .type
+  path {
+  fill: var(--electric-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.ice
+  .type-container
+  .type
+  path {
+  fill: var(--ice-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.fighting
+  .type-container
+  .type
+  path {
+  fill: var(--fighting-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.poison
+  .type-container
+  .type
+  path {
+  fill: var(--poison-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.ground
+  .type-container
+  .type
+  path {
+  fill: var(--ground-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.flying
+  .type-container
+  .type
+  path {
+  fill: var(--flying-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.psychic
+  .type-container
+  .type
+  path {
+  fill: var(--psychic-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.bug
+  .type-container
+  .type
+  path {
+  fill: var(--bug-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.rock
+  .type-container
+  .type
+  path {
+  fill: var(--rock-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.ghost
+  .type-container
+  .type
+  path {
+  fill: var(--ghost-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.dragon
+  .type-container
+  .type
+  path {
+  fill: var(--dragon-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.dark
+  .type-container
+  .type
+  path {
+  fill: var(--dark-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.steel
+  .type-container
+  .type
+  path {
+  fill: var(--steel-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.fairy
+  .type-container
+  .type
+  path {
+  fill: var(--fairy-color);
+}
+
+.modal
+  .info
+  .content__box
+  #details
+  #pokemonChart
+  .types.normal
+  .type-container
+  .type
+  path {
+  fill: var(--normal-color);
+}
+
+.modal .info .content__box #stats {
+  width: 100%;
+}
+
+.modal .info .content__box #stats .stats {
+  width: 100%;
+}
+
+.modal .info .content__box #stats .stats li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.modal .info .content__box #stats .stats li h5 {
+  text-align: left;
+  line-height: 100%;
+  min-width: 84px;
+  font-size: var(--fs-base);
+}
+
+.modal .info .content__box #stats .stats li .bar {
+  background-color: var(--dark-black);
+  border-radius: 1rem;
+  display: block;
+  height: 0.5rem;
+  flex: 1;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.modal .info .content__box #stats .stats li .bar span {
+  height: 100%;
+  float: left;
+  background-color: var(--white);
+  width: 50%;
+  border-radius: 0.2rem;
+}
+
+.modal .info .content__box #stats .stats li p {
+  font-weight: var(--fw-b);
+  line-height: 100%;
+  min-width: 27px;
+  text-align: right;
+}
+
+.modal .info .content__box #stats h4 {
+  text-transform: uppercase;
+  font-weight: var(--fw-b);
+}
+
+.modal .info .content__box #stats h4:first-of-type {
+  text-transform: initial;
+}
+
+.modal .info .content__box #stats .types-fd {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.modal .info .content__box #stats .types-fd .type-fd {
+  padding: 0 0.5rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--dark-black);
+}
+
+.modal .info .content__box #stats .types-fd .type-fd strong {
+  display: block;
   margin: 0.5rem 0;
 }
 
-.modal .info .info__container {
+.modal .info .content__box #stats .types-fd .type-fd .typeFd {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.modal .info .content__box #stats .types-fd .type-fd .typeFd .type-container {
+  min-width: calc((100% - 0.7rem) / 2);
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding: 0.5rem;
+  justify-content: center;
+  padding: 0.2rem 0.6rem 0.2rem 0.2rem;
+  gap: 0.2rem;
+  background-color: var(--dark-black);
+  color: var(--white);
+  border-radius: 3rem;
+  border: none;
 }
 
-.modal .info .info__container span {
-  font-size: var(--fs-md);
-  font-weight: var(--fw-r);
-  text-transform: capitalize;
-  margin-right: 0.5rem;
+.modal
+  .info
+  .content__box
+  #stats
+  .types-fd
+  .type-fd
+  .typeFd
+  .type-container
+  .type {
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
 }
 
-.modal .info .info__container .description {
+.modal
+  .info
+  .content__box
+  #stats
+  .types-fd
+  .type-fd
+  .typeFd
+  .type-container
+  .type
+  svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.modal
+  .info
+  .content__box
+  #stats
+  .types-fd
+  .type-fd
+  .typeFd
+  .type-container
+  .type
+  svg
+  path {
+  fill: var(--dark-black);
+}
+
+.modal
+  .info
+  .content__box
+  #stats
+  .types-fd
+  .type-fd
+  .typeFd
+  .type-container
+  span {
   flex: 1;
 }
 
-.modal .info .info__container .description p {
-  margin: 0.5rem 0;
+.modal .info .content__box #moves table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.modal .info .info__container .description span {
-  margin: 0.5rem 0;
+.modal .info .content__box #moves table tr th,
+.modal .info .content__box #moves table tr td {
+  padding: 0.5rem 0;
+  border: 1px solid var(--dark-black);
+  border-left: none;
+  border-right: none;
 }
 
-.modal .bottom {
-  margin-bottom: 2rem;
+.modal .info .content__box #moves table tr th {
+  border-top: none;
+  font-weight: var(--fw-b);
 }
 
-.modal .bottom .abilities {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
+.modal .info .content__box #moves table tr td:first-of-type {
+  text-align: left;
+  font-weight: var(--fw-b);
 }
 
-.modal .bottom .abilities .ability {
-  border: 2px solid var(--dark-black);
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  font-size: var(--fs-md);
-  font-weight: var(--fw-sb);
+.modal .indicator-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3.5rem;
+  bottom: 0;
+  width: 2.5rem;
+  border-radius: 2rem 2rem 0 0;
+  z-index: -1;
+  transition: all 1.5s 0.3s;
 }
 
-.modal .bottom .abilities .ability span {
-  margin-left: 0.5rem;
+.modal .more {
+  position: absolute;
+  bottom: 4.5rem;
+  z-index: 10000;
+  width: min-content;
+  transition: all 1s 0.9s;
+}
+
+.modal .more i {
+  font-size: var(--fs-lg);
+  border-radius: 50%;
+  transition: color 0.5s 1.2s, background 0.5s 1s;
 }
 
 .modal.show {
@@ -812,7 +1387,6 @@ main .pokemon-card .bottom .types .type-container span {
     margin: 1rem;
     font-size: var(--fs-xl);
   }
-
   .modal .container .middle .header .types {
     margin-bottom: 1rem;
   }

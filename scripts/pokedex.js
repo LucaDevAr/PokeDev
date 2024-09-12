@@ -41,7 +41,6 @@ async function getAllPokemonData() {
     })
   );
   allPokemonData.sort((a, b) => a.id - b.id);
-  console.log(allPokemonData);
 }
 
 let swiperInstance;

@@ -8,14 +8,14 @@
   --fire-color: #ff4500;
   --water-color: #0085ff;
   --grass-color: #38fc38;
-  --electric-color: #ffff00;
-  --ice-color: #00ffff;
+  --electric-color: #ff0;
+  --ice-color: #0ff;
   --fighting-color: #e72323;
   --poison-color: #8f00ff;
   --ground-color: #daa520;
   --flying-color: #4d9ca1;
   --psychic-color: #ff0080;
-  --bug-color: #008800;
+  --bug-color: #080;
   --rock-color: #5f270f;
   --ghost-color: #593e85;
   --dragon-color: #00b288;
@@ -37,7 +37,6 @@
   --fw-sb: 600;
   --fw-b: 700;
 }
-
 /* ===== Reset ===== */
 * {
   margin: 0;
@@ -45,22 +44,18 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 a {
   text-decoration: none;
   color: inherit;
 }
-
 ul {
   list-style: none;
 }
-
 img {
   display: block;
   max-width: 100%;
   height: auto;
 }
-
 body {
   min-height: 100vh;
   font-family: var(--ff);
@@ -68,7 +63,6 @@ body {
   background: var(--dark-black);
   overflow: hidden;
 }
-
 /* ===== Type ===== */
 .fire {
   background-color: var(--fire-color);
@@ -77,6 +71,9 @@ body {
 .fire.active {
   background-color: var(--dark-black);
   color: var(--fire-color);
+}
+.fire.active path {
+  fill: var(--fire-color);
 }
 .fire-bg {
   background-color: var(--fire-color);
@@ -90,7 +87,6 @@ body {
 .fire-svg {
   fill: var(--fire-color);
 }
-
 .water {
   background-color: var(--water-color);
   color: var(--dark-black);
@@ -98,6 +94,9 @@ body {
 .water.active {
   background-color: var(--dark-black);
   color: var(--water-color);
+}
+.water.active path {
+  fill: var(--water-color);
 }
 .water-bg {
   background-color: var(--water-color);
@@ -111,7 +110,6 @@ body {
 .water-svg {
   fill: var(--water-color);
 }
-
 .grass {
   background-color: var(--grass-color);
   color: var(--dark-black);
@@ -119,6 +117,9 @@ body {
 .grass.active {
   background-color: var(--dark-black);
   color: var(--grass-color);
+}
+.grass.active path {
+  fill: var(--grass-color);
 }
 .grass-bg {
   background-color: var(--grass-color);
@@ -132,7 +133,6 @@ body {
 .grass-svg {
   fill: var(--grass-color);
 }
-
 .electric {
   background-color: var(--electric-color);
   color: var(--dark-black);
@@ -140,6 +140,9 @@ body {
 .electric.active {
   background-color: var(--dark-black);
   color: var(--electric-color);
+}
+.electric.active path {
+  fill: var(--electric-color);
 }
 .electric-bg {
   background-color: var(--electric-color);
@@ -153,7 +156,6 @@ body {
 .electric-svg {
   fill: var(--electric-color);
 }
-
 .ice {
   background-color: var(--ice-color);
   color: var(--dark-black);
@@ -161,6 +163,9 @@ body {
 .ice.active {
   background-color: var(--dark-black);
   color: var(--ice-color);
+}
+.ice.active path {
+  fill: var(--ice-color);
 }
 .ice-bg {
   background-color: var(--ice-color);
@@ -174,7 +179,6 @@ body {
 .ice-svg {
   fill: var(--ice-color);
 }
-
 .fighting {
   background-color: var(--fighting-color);
   color: var(--dark-black);
@@ -182,6 +186,9 @@ body {
 .fighting.active {
   background-color: var(--dark-black);
   color: var(--fighting-color);
+}
+.fighting.active path {
+  fill: var(--fighting-color);
 }
 .fighting-bg {
   background-color: var(--fighting-color);
@@ -195,7 +202,6 @@ body {
 .fighting-svg {
   fill: var(--fighting-color);
 }
-
 .poison {
   background-color: var(--poison-color);
   color: var(--dark-black);
@@ -203,6 +209,9 @@ body {
 .poison.active {
   background-color: var(--dark-black);
   color: var(--poison-color);
+}
+.poison.active path {
+  fill: var(--poison-color);
 }
 .poison-bg {
   background-color: var(--poison-color);
@@ -216,7 +225,6 @@ body {
 .poison-svg {
   fill: var(--poison-color);
 }
-
 .ground {
   background-color: var(--ground-color);
   color: var(--dark-black);
@@ -224,6 +232,9 @@ body {
 .ground.active {
   background-color: var(--dark-black);
   color: var(--ground-color);
+}
+.ground.active path {
+  fill: var(--ground-color);
 }
 .ground-bg {
   background-color: var(--ground-color);
@@ -237,7 +248,6 @@ body {
 .ground-svg {
   fill: var(--ground-color);
 }
-
 .flying {
   background-color: var(--flying-color);
   color: var(--dark-black);
@@ -245,6 +255,9 @@ body {
 .flying.active {
   background-color: var(--dark-black);
   color: var(--flying-color);
+}
+.flying.active path {
+  fill: var(--flying-color);
 }
 .flying-bg {
   background-color: var(--flying-color);
@@ -258,7 +271,6 @@ body {
 .flying-svg {
   fill: var(--flying-color);
 }
-
 .psychic {
   background-color: var(--psychic-color);
   color: var(--dark-black);
@@ -266,6 +278,9 @@ body {
 .psychic.active {
   background-color: var(--dark-black);
   color: var(--psychic-color);
+}
+.psychic.active path {
+  fill: var(--psychic-color);
 }
 .psychic-bg {
   background-color: var(--psychic-color);
@@ -279,7 +294,6 @@ body {
 .psychic-svg {
   fill: var(--psychic-color);
 }
-
 .bug {
   background-color: var(--bug-color);
   color: var(--dark-black);
@@ -287,6 +301,9 @@ body {
 .bug.active {
   background-color: var(--dark-black);
   color: var(--bug-color);
+}
+.bug.active path {
+  fill: var(--bug-color);
 }
 .bug-bg {
   background-color: var(--bug-color);
@@ -300,7 +317,6 @@ body {
 .bug-svg {
   fill: var(--bug-color);
 }
-
 .rock {
   background-color: var(--rock-color);
   color: var(--dark-black);
@@ -308,6 +324,9 @@ body {
 .rock.active {
   background-color: var(--dark-black);
   color: var(--rock-color);
+}
+.rock.active path {
+  fill: var(--rock-color);
 }
 .rock-bg {
   background-color: var(--rock-color);
@@ -321,7 +340,6 @@ body {
 .rock-svg {
   fill: var(--rock-color);
 }
-
 .ghost {
   background-color: var(--ghost-color);
   color: var(--dark-black);
@@ -329,6 +347,9 @@ body {
 .ghost.active {
   background-color: var(--dark-black);
   color: var(--ghost-color);
+}
+.ghost.active path {
+  fill: var(--ghost-color);
 }
 .ghost-bg {
   background-color: var(--ghost-color);
@@ -342,7 +363,6 @@ body {
 .ghost-svg {
   fill: var(--ghost-color);
 }
-
 .dragon {
   background-color: var(--dragon-color);
   color: var(--dark-black);
@@ -350,6 +370,9 @@ body {
 .dragon.active {
   background-color: var(--dark-black);
   color: var(--dragon-color);
+}
+.dragon.active path {
+  fill: var(--dragon-color);
 }
 .dragon-bg {
   background-color: var(--dragon-color);
@@ -363,7 +386,6 @@ body {
 .dragon-svg {
   fill: var(--dragon-color);
 }
-
 .dark {
   background-color: var(--dark-color);
   color: var(--dark-black);
@@ -371,6 +393,9 @@ body {
 .dark.active {
   background-color: var(--dark-black);
   color: var(--dark-color);
+}
+.dark.active path {
+  fill: var(--dark-color);
 }
 .dark-bg {
   background-color: var(--dark-color);
@@ -384,14 +409,16 @@ body {
 .dark-svg {
   fill: var(--dark-color);
 }
-
 .steel {
-  background-color: var(--steel-color);
+  background-color: var(--steelfire-color);
   color: var(--dark-black);
 }
 .steel.active {
   background-color: var(--dark-black);
   color: var(--steel-color);
+}
+.steel.active path {
+  fill: var(--steel-color);
 }
 .steel-bg {
   background-color: var(--steel-color);
@@ -405,7 +432,6 @@ body {
 .steel-svg {
   fill: var(--steel-color);
 }
-
 .fairy {
   background-color: var(--fairy-color);
   color: var(--dark-black);
@@ -413,6 +439,9 @@ body {
 .fairy.active {
   background-color: var(--dark-black);
   color: var(--fairy-color);
+}
+.fairy.active path {
+  fill: var(--fairy-color);
 }
 .fairy-bg {
   background-color: var(--fairy-color);
@@ -426,7 +455,6 @@ body {
 .fairy-svg {
   fill: var(--fairy-color);
 }
-
 .normal {
   background-color: var(--normal-color);
   color: var(--dark-black);
@@ -434,6 +462,9 @@ body {
 .normal.active {
   background-color: var(--dark-black);
   color: var(--normal-color);
+}
+.normal.active path {
+  fill: var(--normal-color);
 }
 .normal-bg {
   background-color: var(--normal-color);
