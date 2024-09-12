@@ -29,7 +29,7 @@ export function changeCarousel(pokemonsData) {
   swiperInstance.update();
 }
 
-function getSwiperInstance() {
+export function getSwiperInstance() {
   // Obtener la instancia del swiper existente
   return document.querySelector(".swiper-container").swiper;
 }

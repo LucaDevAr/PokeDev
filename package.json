@@ -1,0 +1,22 @@
+{
+  "name": "pokedev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "assets/js/index.js",
+  "scripts": {
+    "test": "\u001b[D\u001b[A\u001b[B\u001b[C"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucaDevAr/PokeDev.git"
+  },
+  "author": "Luca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LucaDevAr/PokeDev/issues"
+  },
+  "homepage": "https://github.com/LucaDevAr/PokeDev#readme",
+  "dependencies": {
+    "swiper": "^11.1.0"
+  }
+}

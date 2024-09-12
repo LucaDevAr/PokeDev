@@ -50,6 +50,7 @@ export async function createPokemonSlider() {
   const $swiperContainer = document.querySelector(
     ".swiper-container .swiper-wrapper"
   );
+  let centerSlideIndex = 0;
   allPokemonData.slice(0, 1025).forEach((pokemon, index) => {
     const $slide = document.createElement("div");
     $slide.classList.add("swiper-slide");
@@ -62,10 +63,13 @@ export async function createPokemonSlider() {
     $swiperContainer.appendChild($slide);
   });
   // Inicializar Swiper
+  const calculateSpaceBetween = (img, slides) => {
+    return (window.innerWidth - img) / slides;
+  };
   swiperInstance = new Swiper(".swiper-container", {
     slidesPerView: "5",
     freeMode: true,
-    spaceBetween: `${(window.innerWidth - 200) / 4}`,
+    spaceBetween: calculateSpaceBetween(200, 4),
     centeredSlides: true,
     loop: false,
     on: {
@@ -74,15 +78,8 @@ export async function createPokemonSlider() {
       },
     },
   });
-  $swiperContainer.addEventListener("click", (event) => {
-    const $clickedImg = event.target.closest("img");
-    if ($clickedImg) {
-      const index = parseInt($clickedImg.dataset.index);
-      swiperInstance.slideTo(index);
-    }
-  });
   swiperInstance.on("slideChange", () => {
-    const centerSlideIndex = swiperInstance.realIndex;
+    centerSlideIndex = swiperInstance.realIndex;
     const centerSlide = $swiperContainer.querySelector(
       `.swiper-slide:nth-child(${centerSlideIndex + 1})`
     );
@@ -96,6 +93,49 @@ export async function createPokemonSlider() {
           modal(pokemon, type, variant);
         }
       });
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    const $line = document.querySelector(".line");
+    const $tab = document.querySelector("h3.active");
+    const currentCenterSlide = swiperInstance.slides[centerSlideIndex];
+    const currentCenterSlideOffset =
+      currentCenterSlide.offsetLeft - swiperInstance.translate;
+    if (window.innerWidth >= "920") {
+      swiperInstance.params.slidesPerView = "9";
+      swiperInstance.params.spaceBetween = calculateSpaceBetween(360, 8);
+      swiperInstance.update();
+      setTimeout(() => {
+        const $line = document.querySelector(".line");
+        const $tab = document.querySelector("h3.active");
+        $line.style.opacity = "1";
+        $line.style.left = $tab.offsetLeft + "px";
+      }, 1600);
+    } else {
+      swiperInstance.params.slidesPerView = "5";
+      swiperInstance.params.spaceBetween = calculateSpaceBetween(200, 4);
+      swiperInstance.update();
+      $line.style.opacity = "1";
+      $line.style.left = $tab.offsetLeft + "px";
+    }
+    swiperInstance.slideTo(centerSlideIndex, 0);
+    swiperInstance.setTranslate(-currentCenterSlideOffset);
+    setTimeout(() => {
+      const $line = document.querySelector(".line");
+      const $tab = document.querySelector("h3.active");
+      $line.style.opacity = "1";
+      $line.style.left = $tab.offsetLeft + "px";
+    }, 1600);
+  });
+
+  $swiperContainer.addEventListener("click", (event) => {
+    const $clickedImg = event.target.closest("img");
+    if ($clickedImg) {
+      const index = parseInt($clickedImg.dataset.index);
+      swiperInstance.slideTo(index);
+      updateCenterSlides(index);
+      console.log(index);
     }
   });
 }
