@@ -77,9 +77,6 @@ body {
 .fire.active {
   background-color: var(--dark-black);
   color: var(--fire-color);
-  path {
-    fill: var(--fire-color);
-  }
 }
 .fire-bg {
   background-color: var(--fire-color);
@@ -93,6 +90,7 @@ body {
 .fire-svg {
   fill: var(--fire-color);
 }
+
 .water {
   background-color: var(--water-color);
   color: var(--dark-black);
@@ -100,9 +98,6 @@ body {
 .water.active {
   background-color: var(--dark-black);
   color: var(--water-color);
-  path {
-    fill: var(--water-color);
-  }
 }
 .water-bg {
   background-color: var(--water-color);
@@ -116,6 +111,7 @@ body {
 .water-svg {
   fill: var(--water-color);
 }
+
 .grass {
   background-color: var(--grass-color);
   color: var(--dark-black);
@@ -123,9 +119,6 @@ body {
 .grass.active {
   background-color: var(--dark-black);
   color: var(--grass-color);
-  path {
-    fill: var(--grass-color);
-  }
 }
 .grass-bg {
   background-color: var(--grass-color);
@@ -139,6 +132,7 @@ body {
 .grass-svg {
   fill: var(--grass-color);
 }
+
 .electric {
   background-color: var(--electric-color);
   color: var(--dark-black);
@@ -146,9 +140,6 @@ body {
 .electric.active {
   background-color: var(--dark-black);
   color: var(--electric-color);
-  path {
-    fill: var(--electric-color);
-  }
 }
 .electric-bg {
   background-color: var(--electric-color);
@@ -162,6 +153,7 @@ body {
 .electric-svg {
   fill: var(--electric-color);
 }
+
 .ice {
   background-color: var(--ice-color);
   color: var(--dark-black);
@@ -169,9 +161,6 @@ body {
 .ice.active {
   background-color: var(--dark-black);
   color: var(--ice-color);
-  path {
-    fill: var(--ice-color);
-  }
 }
 .ice-bg {
   background-color: var(--ice-color);
@@ -185,6 +174,7 @@ body {
 .ice-svg {
   fill: var(--ice-color);
 }
+
 .fighting {
   background-color: var(--fighting-color);
   color: var(--dark-black);
@@ -192,9 +182,6 @@ body {
 .fighting.active {
   background-color: var(--dark-black);
   color: var(--fighting-color);
-  path {
-    fill: var(--fighting-color);
-  }
 }
 .fighting-bg {
   background-color: var(--fighting-color);
@@ -208,6 +195,7 @@ body {
 .fighting-svg {
   fill: var(--fighting-color);
 }
+
 .poison {
   background-color: var(--poison-color);
   color: var(--dark-black);
@@ -215,9 +203,6 @@ body {
 .poison.active {
   background-color: var(--dark-black);
   color: var(--poison-color);
-  path {
-    fill: var(--poison-color);
-  }
 }
 .poison-bg {
   background-color: var(--poison-color);
@@ -231,6 +216,7 @@ body {
 .poison-svg {
   fill: var(--poison-color);
 }
+
 .ground {
   background-color: var(--ground-color);
   color: var(--dark-black);
@@ -238,9 +224,6 @@ body {
 .ground.active {
   background-color: var(--dark-black);
   color: var(--ground-color);
-  path {
-    fill: var(--ground-color);
-  }
 }
 .ground-bg {
   background-color: var(--ground-color);
@@ -254,6 +237,7 @@ body {
 .ground-svg {
   fill: var(--ground-color);
 }
+
 .flying {
   background-color: var(--flying-color);
   color: var(--dark-black);
@@ -261,9 +245,6 @@ body {
 .flying.active {
   background-color: var(--dark-black);
   color: var(--flying-color);
-  path {
-    fill: var(--flying-color);
-  }
 }
 .flying-bg {
   background-color: var(--flying-color);
@@ -277,6 +258,7 @@ body {
 .flying-svg {
   fill: var(--flying-color);
 }
+
 .psychic {
   background-color: var(--psychic-color);
   color: var(--dark-black);
@@ -284,9 +266,6 @@ body {
 .psychic.active {
   background-color: var(--dark-black);
   color: var(--psychic-color);
-  path {
-    fill: var(--psychic-color);
-  }
 }
 .psychic-bg {
   background-color: var(--psychic-color);
@@ -300,6 +279,7 @@ body {
 .psychic-svg {
   fill: var(--psychic-color);
 }
+
 .bug {
   background-color: var(--bug-color);
   color: var(--dark-black);
@@ -307,9 +287,6 @@ body {
 .bug.active {
   background-color: var(--dark-black);
   color: var(--bug-color);
-  path {
-    fill: var(--bug-color);
-  }
 }
 .bug-bg {
   background-color: var(--bug-color);
@@ -323,6 +300,7 @@ body {
 .bug-svg {
   fill: var(--bug-color);
 }
+
 .rock {
   background-color: var(--rock-color);
   color: var(--dark-black);
@@ -330,9 +308,6 @@ body {
 .rock.active {
   background-color: var(--dark-black);
   color: var(--rock-color);
-  path {
-    fill: var(--rock-color);
-  }
 }
 .rock-bg {
   background-color: var(--rock-color);
@@ -346,6 +321,7 @@ body {
 .rock-svg {
   fill: var(--rock-color);
 }
+
 .ghost {
   background-color: var(--ghost-color);
   color: var(--dark-black);
@@ -353,9 +329,6 @@ body {
 .ghost.active {
   background-color: var(--dark-black);
   color: var(--ghost-color);
-  path {
-    fill: var(--ghost-color);
-  }
 }
 .ghost-bg {
   background-color: var(--ghost-color);
@@ -369,6 +342,7 @@ body {
 .ghost-svg {
   fill: var(--ghost-color);
 }
+
 .dragon {
   background-color: var(--dragon-color);
   color: var(--dark-black);
@@ -376,9 +350,6 @@ body {
 .dragon.active {
   background-color: var(--dark-black);
   color: var(--dragon-color);
-  path {
-    fill: var(--dragon-color);
-  }
 }
 .dragon-bg {
   background-color: var(--dragon-color);
@@ -392,6 +363,7 @@ body {
 .dragon-svg {
   fill: var(--dragon-color);
 }
+
 .dark {
   background-color: var(--dark-color);
   color: var(--dark-black);
@@ -399,9 +371,6 @@ body {
 .dark.active {
   background-color: var(--dark-black);
   color: var(--dark-color);
-  path {
-    fill: var(--dark-color);
-  }
 }
 .dark-bg {
   background-color: var(--dark-color);
@@ -415,16 +384,14 @@ body {
 .dark-svg {
   fill: var(--dark-color);
 }
+
 .steel {
-  background-color: var(--steelfire-color);
+  background-color: var(--steel-color);
   color: var(--dark-black);
 }
 .steel.active {
   background-color: var(--dark-black);
   color: var(--steel-color);
-  path {
-    fill: var(--steel-color);
-  }
 }
 .steel-bg {
   background-color: var(--steel-color);
@@ -438,6 +405,7 @@ body {
 .steel-svg {
   fill: var(--steel-color);
 }
+
 .fairy {
   background-color: var(--fairy-color);
   color: var(--dark-black);
@@ -445,9 +413,6 @@ body {
 .fairy.active {
   background-color: var(--dark-black);
   color: var(--fairy-color);
-  path {
-    fill: var(--fairy-color);
-  }
 }
 .fairy-bg {
   background-color: var(--fairy-color);
@@ -461,6 +426,7 @@ body {
 .fairy-svg {
   fill: var(--fairy-color);
 }
+
 .normal {
   background-color: var(--normal-color);
   color: var(--dark-black);
@@ -468,9 +434,6 @@ body {
 .normal.active {
   background-color: var(--dark-black);
   color: var(--normal-color);
-  path {
-    fill: var(--normal-color);
-  }
 }
 .normal-bg {
   background-color: var(--normal-color);
