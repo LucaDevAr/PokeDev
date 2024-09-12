@@ -4,6 +4,7 @@ import { accordion } from "../../scripts/accordion.js";
 import { filters } from "../../scripts/filters.js";
 import { searchBar } from "../../scripts/search-bar.js";
 import { scroll } from "../../scripts/scroll.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
   await pokedex();
 });
