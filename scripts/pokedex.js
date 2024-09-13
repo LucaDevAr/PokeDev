@@ -2,6 +2,7 @@ import { modal } from "./modal.js";
 import { createPokemonCardHTML } from "./cards.js";
 import { getTypeSvgCode } from "./cards.js";
 import { getVariants } from "./cards.js";
+
 export let allPokemonData = [];
 export let filteredPokemon = [];
 export function updateFilteredPokemon(value) {
