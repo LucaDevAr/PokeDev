@@ -7,14 +7,18 @@ export let filteredPokemon = [];
 export function updateFilteredPokemon(value) {
   filteredPokemon = value;
 }
+
 let $cards = document.querySelectorAll(".pokemon-card");
+
 export function getCards() {
   return $cards;
 }
+
 export function updateCards() {
   $cards = document.querySelectorAll(".pokemon-card");
   return $cards;
 }
+
 export async function pokedex() {
   await getAllPokemonData();
   createPokemonSlider();
