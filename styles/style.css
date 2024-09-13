@@ -372,6 +372,7 @@ main .pokemon-card .bottom .types .type-container span {
 
 .modal .top #back {
   font-size: calc(var(--fs-lg) + 0.5rem);
+  cursor: pointer;
 }
 
 .modal .top .variants {
@@ -382,6 +383,7 @@ main .pokemon-card .bottom .types .type-container span {
   color: var(--dark-black);
   font-weight: var(--fw-b);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .modal .top .variants i {
@@ -1145,6 +1147,7 @@ main .pokemon-card .bottom .types .type-container span {
   z-index: 10000;
   width: min-content;
   transition: all 1s 0.9s;
+  cursor: pointer;
 }
 
 .modal .more i {
